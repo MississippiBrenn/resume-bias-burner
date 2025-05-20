@@ -1,16 +1,20 @@
-# Design Plan 
+# Design Plan
 
-## Goal 
-Create an AI-powered tool that screens resumes while: 
+## Goal
+
+Create an AI-powered tool that screens resumes while:
+
 - Highlighting non-linear or "hidden" strengths (e.g. caregiver gaps, volunteer roles)
 - Flagging biased rejections (e.g. against employment gaps, non-college paths)
 - Giving an 'Equity Score' on each resume's likelihood of being unfairly judged
 
-## Input 
+## Input
+
 - A resume (text or parsed data from PDF)
 - Optional: A job description
 
-## Process 
+## Process
+
 1. Extract key entities (skills, roles, dates gaps)
 2. Identify  patterns like:
    - Gaps in employment
@@ -24,5 +28,6 @@ Create an AI-powered tool that screens resumes while:
    - Equity warning (if risk of bias is high)
    - Summary of hidden strengths
 
-### Output 
-- Clean JSON or readable report 
+### Output
+
+- Clean JSON or readable report
