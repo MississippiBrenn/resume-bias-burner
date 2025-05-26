@@ -1,12 +1,31 @@
 import re 
 def extract_resume_data(text):
-    # TODO: implement skill, gap and experience detection 
     data = {
-        "skills":[],
-        "gaps":[],
-        "volunteer_roles":[],
-        "caregiving_signals":[]
+        "skills": [],
+        "gaps": [],
+        "volunteer_roles": [],
+        "caregiving_signals": []
     }
+
+    # Example caregiving keywords
+    caregiving_keywords = ["maternity leave", "paternity leave", "caregiver", "raising children", "stay-at-home", "mom", "dad", "son", "daughter", "child", "parent"]
+
+    # Example volunteer roles
+    volunteer_keywords = ["volunteer", "nonprofit", "community work", "unpaid", "community"]
+
+    # Search for caregiving indicators
+    for word in caregiving_keywords:
+        if word in text.lower():
+            data["caregiving_signals"].append(word)
+
+    # Search for volunteer indicators
+    for word in volunteer_keywords:
+        if word in text.lower():
+            data["volunteer_roles"].append(word)
+
+    # TODO: Detect employment gaps (placeholder)
+    # You might scan for date ranges and calculate missing years
+
     return data
 
 def score_bias_risk(data):
