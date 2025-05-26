@@ -24,7 +24,7 @@ def extract_resume_data(text):
             data["volunteer_roles"].append(word)
 
     # TODO: Detect employment gaps (placeholder)
-    # You might scan for date ranges and calculate missing years
+    #  scan for date ranges and calculate missing years
 
     return data
 
