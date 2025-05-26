@@ -29,10 +29,24 @@ def extract_resume_data(text):
     return data
 
 def score_bias_risk(data):
-    # TODO:  Add actual scoring logci
+    score = 0
+    flags = []
+
+    if data["caregiving_signals"]:
+        score += 1
+        flags.append("Possible caregiving-related gap")
+
+    if data["volunteer_roles"]:
+        score += 1
+        flags.append("Volunteer or unpaid labor")
+
+    if len(data.get("gaps", [])) > 0:
+        score += len(data["gaps"])
+        flags.append("Employment gap(s) detected")
+
     return {
-        "bias_risk_score": 0.0,
-        "risk_flags": []
+        "bias_risk_score": score,
+        "risk_flags": flags
     }
 
 def summarize_hidden_strengths(data):
