@@ -22,12 +22,25 @@ def extract_resume_data(text):
     for word in volunteer_keywords:
         if word in text.lower():
             data["volunteer_roles"].append(word)
-
-    # TODO: Detect employment gaps (placeholder)
+            
     #  scan for date ranges and calculate missing years
+    data["gaps"] = detect_year_gaps(text)
 
     return data
 
+def detect_year_gaps(text): 
+    # Find all 4-digit years 
+    years = sorted(set(int(y) for y in 
+re.findall(r"\b(19|20)\d{2}\b", text)))
+    years = sorted([y for y in years if 1970 <= y <= 2030]) 
+
+    gaps = []
+    for i in range(1, len(ears)): 
+        if years[i] - years[i-1] > 1: 
+            gaps.append((years[i-1], years[i]))
+
+    return gaps
+    
 def score_bias_risk(data):
     score = 0
     flags = []
