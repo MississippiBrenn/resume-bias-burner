@@ -63,8 +63,15 @@ def score_bias_risk(data):
     }
 
 def summarize_hidden_strengths(data):
-    # TODO: Highlight underrepresented strengths
-    return []
+    strengths = []
+    if data["caregiving_signals"]:
+        strengths.append("Demonstrated caregiving responsibilities, which reflect compassion, time management, and multitasking.")
+
+    if data["volunteer_roles"]:
+        strengths.append("Engaged in vounteer or unpaid work, showing community involvement and initiative.")
+    if len(data.get("gaps", [])) > 0:
+            strengths.append("Resilience through non-linear work hitory-likely adaptability and self-direction.")
+    return strenghts
 
 def process_resume(text):
     data = extract_resume_data(text)
@@ -79,10 +86,9 @@ def process_resume(text):
 if __name__ == "__main__":
     # Example usage
     resume_text = """
-    John Doe
-    Software Engineer
-    Skills: Python, JavaScript, SQL
-    Experience: 5 years as a software engineer
+    Volunteer at a local shelter 2016-2017, Caregiver for parent 2018-2020. Freelance writing 2021-2022.
     """
     result = process_resume(resume_text)
-    print(result)
+    print("\n--- Hidden Strengths Summary ---")
+    for s in result["strengths_summary"]: 
+        print(f"- {s}")
