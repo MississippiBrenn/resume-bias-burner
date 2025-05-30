@@ -36,7 +36,7 @@ re.findall(r"\b(19|20)\d{2}\b", text)))
     years = sorted([y for y in years if 1970 <= y <= 2030]) 
 
     gaps = []
-    for i in range(1, len(ears)): 
+    for i in range(1, len(years)): 
         if years[i] - years[i-1] > 1: 
             gaps.append((years[i-1], years[i]))
 
@@ -72,7 +72,7 @@ def summarize_hidden_strengths(data):
         strengths.append("Engaged in vounteer or unpaid work, showing community involvement and initiative.")
     if len(data.get("gaps", [])) > 0:
             strengths.append("Resilience through non-linear work hitory-likely adaptability and self-direction.")
-    return strenghts
+    return strengths
 
 def process_resume(text):
     data = extract_resume_data(text)
@@ -81,7 +81,7 @@ def process_resume(text):
     return {
         "parsed": data,
         "bias_assessment": bias_info,
-        "strenths_summary": summary
+        "strengths_summary": summary
     }
 
 if __name__ == "__main__":
@@ -90,7 +90,9 @@ if __name__ == "__main__":
     Volunteer at a local shelter 2016-2017, Caregiver for parent 2018-2020. Freelance writing 2021-2022.
     """
     result = process_resume(resume_text)
+    
     print("\n--- Hidden Strengths Summary ---")
     for s in result["strengths_summary"]: 
         print(f"- {s}")
+        
     print(json.dumps(result, indent=2))
