@@ -1,4 +1,5 @@
 import re 
+import json 
 def extract_resume_data(text):
     data = {
         "skills": [],
@@ -92,3 +93,4 @@ if __name__ == "__main__":
     print("\n--- Hidden Strengths Summary ---")
     for s in result["strengths_summary"]: 
         print(f"- {s}")
+    print(json.dumps(result, indent=2))
